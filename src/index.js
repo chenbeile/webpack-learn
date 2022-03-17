@@ -11,3 +11,6 @@ import imgFile3 from './img/1.png'
 insertImgElem(imgFile3)
 import './style/style1.css'
 import './style/style2.less'
+// 引入第三方模块
+import _ from 'lodash'
+console.log(_.each)

@@ -88,13 +88,15 @@ module.exports = merge(webpackCommonConf, {
              *  all 全部 chunk
              */
             cacheGroups: {
-                // 第三方模块
+                // 第三方模块，
+                // 如lodash就是从node——modules引入到代码层应用的，所以可以把lodash抽离出来
+                // 抽离公共代码和第三方代码，如果是相同的资源，可以命中缓存，就不用再次加载了
                 vendor: {
                     name: 'vendor', // chunk名称
                     priority: 1, // 权限更高，优先抽离，重要！！
                     test: /node_modules/,
-                    minSize: 0, // 大小限制
-                    minChunks: 1 // 最少复用过几次
+                    minSize: 0, // 大小限制，大于多少kb就打包出来，否则不做处理，防止一些小模块也被打包进来
+                    minChunks: 1 // 最少复用过几次，复用过多次的代码拆分出来
                 },
                 // 公共模块
                 common: {
