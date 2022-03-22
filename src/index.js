@@ -14,3 +14,11 @@ import './style/style2.less'
 // 引入第三方模块
 import _ from 'lodash'
 console.log(_.each)
+
+// 引入动态数据，懒加载
+setTimeout(() => {
+    // 这里import.then的形式懒加载js文件
+    import('./dynamic-data.js').then(res => {
+        console.log(res.default.message) //注意这里的default
+    })
+}, 1500)
